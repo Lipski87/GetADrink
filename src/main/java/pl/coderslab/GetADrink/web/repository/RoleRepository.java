@@ -2,9 +2,8 @@ package pl.coderslab.GetADrink.web.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pl.coderslab.GetADrink.model.User;
+import pl.coderslab.GetADrink.model.Role;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    User findByUsername(String username);
+public interface RoleRepository extends JpaRepository<Role, Long> {
 }

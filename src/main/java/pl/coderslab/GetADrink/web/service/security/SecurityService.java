@@ -1,4 +1,4 @@
-package pl.coderslab.GetADrink.web.service;
+package pl.coderslab.GetADrink.web.service.security;
 
 import org.springframework.stereotype.Service;
 

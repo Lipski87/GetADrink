@@ -1,4 +1,4 @@
-package pl.coderslab.GetADrink.config;
+package pl.coderslab.GetADrink;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

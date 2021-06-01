@@ -1,4 +1,4 @@
-package pl.coderslab.GetADrink.web.service;
+package pl.coderslab.GetADrink.web.service.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

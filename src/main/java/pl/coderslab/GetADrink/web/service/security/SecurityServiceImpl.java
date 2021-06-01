@@ -1,4 +1,4 @@
-package pl.coderslab.GetADrink.web.service;
+package pl.coderslab.GetADrink.web.service.security;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

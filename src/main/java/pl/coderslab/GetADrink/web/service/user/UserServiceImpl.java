@@ -1,4 +1,4 @@
-package pl.coderslab.GetADrink.web.service;
+package pl.coderslab.GetADrink.web.service.user;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

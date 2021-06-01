@@ -6,7 +6,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import pl.coderslab.GetADrink.model.User;
-import pl.coderslab.GetADrink.web.service.UserService;
+import pl.coderslab.GetADrink.web.service.user.UserService;
 
 @Component
 public class UserValidator implements Validator {

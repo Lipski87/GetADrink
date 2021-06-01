@@ -9,9 +9,6 @@
 <head>
   <meta charset="utf-8">
   <title>Log in with your account</title>
-
-  <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-  <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
 </head>
 
 <body>
@@ -21,7 +18,7 @@
     <h2 class="form-heading">Log in</h2>
 
     <div class="form-group ${error != null ? 'has-error' : ''}">
-      <span>${message}</span>
+      <span>${message}</span><br>
       <input name="username" type="text" class="form-control" placeholder="Username"
              autofocus="true"/>
       <input name="password" type="password" class="form-control" placeholder="Password"/>
@@ -33,8 +30,5 @@
     </div>
   </form>
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>

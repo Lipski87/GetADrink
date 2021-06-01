@@ -1,4 +1,4 @@
-package pl.coderslab.GetADrink.web.service;
+package pl.coderslab.GetADrink.web.service.user;
 
 import org.springframework.stereotype.Service;
 import pl.coderslab.GetADrink.model.User;

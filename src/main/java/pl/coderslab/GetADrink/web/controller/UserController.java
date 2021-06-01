@@ -7,8 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.GetADrink.model.User;
 import pl.coderslab.GetADrink.validation.UserValidator;
-import pl.coderslab.GetADrink.web.service.SecurityServiceImpl;
-import pl.coderslab.GetADrink.web.service.UserServiceImpl;
+import pl.coderslab.GetADrink.web.service.security.SecurityServiceImpl;
+import pl.coderslab.GetADrink.web.service.user.UserServiceImpl;
 
 @Controller
 public class UserController {
@@ -26,7 +26,7 @@ public class UserController {
     @GetMapping("/registration")
     public String getRegistrationForm(Model model) {
         model.addAttribute("user", new User());
-        return "user/userRegistrationForm";
+        return "/userRegistrationForm";
     }
 
     @PostMapping("/registration")
@@ -34,19 +34,19 @@ public class UserController {
         userValidator.validate(user, bindingResult);
 
         if (bindingResult.hasErrors()){
-            return "user/userRegistrationForm";
+            return "/userRegistrationForm";
         }
 
         userServiceImpl.addUser(user);
 
         securityServiceImpl.autoLogin(user.getUsername(), user.getPasswordConfirm());
-        return "redirect:/user/userProfile";
+        return "/userProfile";
     }
 
     @GetMapping("/login")
     public String login(Model model, String error, String logout) {
         if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
+            model.addAttribute("error", "Your username or password is invalid.");
 
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
@@ -54,8 +54,8 @@ public class UserController {
         return "/login";
     }
 
-    @GetMapping({"/user/userProfile"})
+    @GetMapping({"/","/userProfile"})
     public String welcome(Model model) {
-        return "/user/userProfile";
+        return "/userProfile";
     }
 }

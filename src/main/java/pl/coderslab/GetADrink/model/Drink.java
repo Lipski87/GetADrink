@@ -1,17 +1,13 @@
 package pl.coderslab.GetADrink.model;
 
-import java.util.HashMap;
-import java.util.Map;
-import javax.annotation.Generated;
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.*;
+
+import javax.annotation.Generated;
+import javax.persistence.*;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -72,6 +68,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@ToString
 @Entity
 @Table(name = "drinks")
 @Generated("jsonschema2pojo")
@@ -80,9 +77,10 @@ public class Drink {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty("idDrink")
-    public String idDrink;
+    private String idDrink;
     @JsonProperty("strDrink")
-    public String strDrink;
+    @Column(name = "drink_name")
+    private String strDrink;
 //    @JsonProperty("strDrinkAlternate")
 //    public Object strDrinkAlternate;
 //    @JsonProperty("strTags")
@@ -94,11 +92,13 @@ public class Drink {
 //    @JsonProperty("strIBA")
 //    public Object strIBA;
     @JsonProperty("strAlcoholic")
-    public String strAlcoholic;
+    @Column(name = "alcoholic")
+    private String strAlcoholic;
 //    @JsonProperty("strGlass")
 //    public String strGlass;
     @JsonProperty("strInstructions")
-    public String strInstructions;
+    @Column(name = "instructions")
+    private String strInstructions;
 //    @JsonProperty("strInstructionsES")
 //    public Object strInstructionsES;
 //    @JsonProperty("strInstructionsDE")
@@ -113,66 +113,96 @@ public class Drink {
 //    public Object strInstructionsZHHANT;
 //    @JsonProperty("strDrinkThumb")
 //    public String strDrinkThumb;
-//    @JsonProperty("strIngredient1")
-//    public String strIngredient1;
-//    @JsonProperty("strIngredient2")
-//    public String strIngredient2;
-//    @JsonProperty("strIngredient3")
-//    public String strIngredient3;
-//    @JsonProperty("strIngredient4")
-//    public String strIngredient4;
-//    @JsonProperty("strIngredient5")
-//    public Object strIngredient5;
-//    @JsonProperty("strIngredient6")
-//    public Object strIngredient6;
-//    @JsonProperty("strIngredient7")
-//    public Object strIngredient7;
-//    @JsonProperty("strIngredient8")
-//    public Object strIngredient8;
-//    @JsonProperty("strIngredient9")
-//    public Object strIngredient9;
-//    @JsonProperty("strIngredient10")
-//    public Object strIngredient10;
-//    @JsonProperty("strIngredient11")
-//    public Object strIngredient11;
-//    @JsonProperty("strIngredient12")
-//    public Object strIngredient12;
-//    @JsonProperty("strIngredient13")
-//    public Object strIngredient13;
-//    @JsonProperty("strIngredient14")
-//    public Object strIngredient14;
-//    @JsonProperty("strIngredient15")
-//    public Object strIngredient15;
-//    @JsonProperty("strMeasure1")
-//    public String strMeasure1;
-//    @JsonProperty("strMeasure2")
-//    public String strMeasure2;
-//    @JsonProperty("strMeasure3")
-//    public String strMeasure3;
-//    @JsonProperty("strMeasure4")
-//    public String strMeasure4;
-//    @JsonProperty("strMeasure5")
-//    public Object strMeasure5;
-//    @JsonProperty("strMeasure6")
-//    public Object strMeasure6;
-//    @JsonProperty("strMeasure7")
-//    public Object strMeasure7;
-//    @JsonProperty("strMeasure8")
-//    public Object strMeasure8;
-//    @JsonProperty("strMeasure9")
-//    public Object strMeasure9;
-//    @JsonProperty("strMeasure10")
-//    public Object strMeasure10;
-//    @JsonProperty("strMeasure11")
-//    public Object strMeasure11;
-//    @JsonProperty("strMeasure12")
-//    public Object strMeasure12;
-//    @JsonProperty("strMeasure13")
-//    public Object strMeasure13;
-//    @JsonProperty("strMeasure14")
-//    public Object strMeasure14;
-//    @JsonProperty("strMeasure15")
-//    public Object strMeasure15;
+    @Transient
+    @JsonProperty("strIngredient1")
+    private String strIngredient1;
+    @Transient
+    @JsonProperty("strIngredient2")
+    private String strIngredient2;
+    @Transient
+    @JsonProperty("strIngredient3")
+    private String strIngredient3;
+    @Transient
+    @JsonProperty("strIngredient4")
+    private String strIngredient4;
+    @Transient
+    @JsonProperty("strIngredient5")
+    private Object strIngredient5;
+    @Transient
+    @JsonProperty("strIngredient6")
+    private Object strIngredient6;
+    @Transient
+    @JsonProperty("strIngredient7")
+    private Object strIngredient7;
+    @Transient
+    @JsonProperty("strIngredient8")
+    private Object strIngredient8;
+    @Transient
+    @JsonProperty("strIngredient9")
+    private Object strIngredient9;
+    @Transient
+    @JsonProperty("strIngredient10")
+    private Object strIngredient10;
+    @Transient
+    @JsonProperty("strIngredient11")
+    private Object strIngredient11;
+    @Transient
+    @JsonProperty("strIngredient12")
+    private Object strIngredient12;
+    @Transient
+    @JsonProperty("strIngredient13")
+    private Object strIngredient13;
+    @Transient
+    @JsonProperty("strIngredient14")
+    private Object strIngredient14;
+    @Transient
+    @JsonProperty("strIngredient15")
+    private Object strIngredient15;
+    @Transient
+    @JsonProperty("strMeasure1")
+    private String strMeasure1;
+    @Transient
+    @JsonProperty("strMeasure2")
+    private String strMeasure2;
+    @Transient
+    @JsonProperty("strMeasure3")
+    private String strMeasure3;
+    @Transient
+    @JsonProperty("strMeasure4")
+    private String strMeasure4;
+    @Transient
+    @JsonProperty("strMeasure5")
+    private Object strMeasure5;
+    @Transient
+    @JsonProperty("strMeasure6")
+    private Object strMeasure6;
+    @Transient
+    @JsonProperty("strMeasure7")
+    private Object strMeasure7;
+    @Transient
+    @JsonProperty("strMeasure8")
+    private Object strMeasure8;
+    @Transient
+    @JsonProperty("strMeasure9")
+    private Object strMeasure9;
+    @Transient
+    @JsonProperty("strMeasure10")
+    private Object strMeasure10;
+    @Transient
+    @JsonProperty("strMeasure11")
+    private Object strMeasure11;
+    @Transient
+    @JsonProperty("strMeasure12")
+    private Object strMeasure12;
+    @Transient
+    @JsonProperty("strMeasure13")
+    private Object strMeasure13;
+    @Transient
+    @JsonProperty("strMeasure14")
+    private Object strMeasure14;
+    @Transient
+    @JsonProperty("strMeasure15")
+    private Object strMeasure15;
 //    @JsonProperty("strImageSource")
 //    public Object strImageSource;
 //    @JsonProperty("strImageAttribution")
@@ -193,5 +223,11 @@ public class Drink {
 //    public void setAdditionalProperty(String name, Object value) {
 //        this.additionalProperties.put(name, value);
 //    }
+
+
+    private String strIngredientsAndMeasures;
+
+
+
 
 }

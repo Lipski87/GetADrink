@@ -1,8 +1,6 @@
 package pl.coderslab.GetADrink.webclient.dto;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -24,8 +22,9 @@ public class DrinkDto {
 
     @JsonProperty("drinks")
     public List<Drink> drinks = null;
+
     @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    public static Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
@@ -36,5 +35,4 @@ public class DrinkDto {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
-
 }

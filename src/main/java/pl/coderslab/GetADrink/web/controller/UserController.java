@@ -40,7 +40,7 @@ public class UserController {
         userServiceImpl.addUser(user);
 
         securityServiceImpl.autoLogin(user.getUsername(), user.getPasswordConfirm());
-        return "/userProfile";
+        return "/home";
     }
 
     @GetMapping("/login")
@@ -56,6 +56,6 @@ public class UserController {
 
     @GetMapping({"/","/userProfile"})
     public String welcome(Model model) {
-        return "/userProfile";
+        return "/home";
     }
 }

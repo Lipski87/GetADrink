@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Your profile</title>
+    <title>Home</title>
 </head>
 <body>
 <div class="container">
@@ -20,6 +20,7 @@
     </c:if>
 </div>
 <button onclick="location.href='/drinks/random'" type="button">
-    Wylosuj drink</button>
+    Get a random drink</button>
+
 </body>
 </html>

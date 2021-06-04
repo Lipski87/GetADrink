@@ -2,7 +2,7 @@ package pl.coderslab.GetADrink.webclient;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import pl.coderslab.GetADrink.model.Drink;
+import pl.coderslab.GetADrink.model.DrinkJsonProperty;
 import pl.coderslab.GetADrink.webclient.dto.DrinkDto;
 
 import java.util.ArrayList;
@@ -23,7 +23,8 @@ public class DrinkClient {
     }
 
 
-    public List<Drink> getRandomDrink() {
+
+    public List<DrinkJsonProperty> getRandomDrink() {
 
         DrinkDto drinkDto = callGetMethod("{apiKey}/random.php", DrinkDto.class, API_KEY);
 
@@ -31,70 +32,75 @@ public class DrinkClient {
 
     }
 
-    public List<Drink> getDrinkByName(String drinkName){
+    public List<DrinkJsonProperty> getDrinkByName(String drinkName) {
         DrinkDto drinkDto = callGetMethod("{apikey}/search.php?s={drinkName}", DrinkDto.class, API_KEY, drinkName);
 
         return getDrinks(drinkDto);
     }
 
-    private List<Drink> getDrinks(DrinkDto drinkDto) {
+    private List<DrinkJsonProperty> getDrinks(DrinkDto drinkDto) {
 
-        List<Drink> drinks= new ArrayList<>();
+        List<DrinkJsonProperty> drinkJsonProperties = new ArrayList<>();
 
-        for (int i = 0; i < drinkDto.getDrinks().size(); i++){
+        for (int i = 0; i < drinkDto.getDrinkJsonProperties().size(); i++) {
 
-            drinks.add(Drink.builder()
-                    .strDrink(drinkDto.getDrinks().get(i).getStrDrink())
-                    .strAlcoholic(drinkDto.getDrinks().get(i).getStrAlcoholic())
-                    .strIngredientsAndMeasures(getIngredientsAndMeasures(drinkDto))
-                    .strInstructions(drinkDto.getDrinks().get(i).getStrInstructions())
+            drinkJsonProperties.add(DrinkJsonProperty.builder()
+                    .strDrink(drinkDto.getDrinkJsonProperties().get(i).getStrDrink())
+                    .strAlcoholic(drinkDto.getDrinkJsonProperties().get(i).getStrAlcoholic())
+                    .strIngredientsAndMeasures(getIngredientsAndMeasures(drinkDto.getDrinkJsonProperties().get(i)))
+                    .strInstructions(drinkDto.getDrinkJsonProperties().get(i).getStrInstructions())
                     .build());
         }
-        return drinks;
+        return drinkJsonProperties;
     }
 
-    private String getIngredientsAndMeasures(DrinkDto drinkDto) {
+    private String getIngredientsAndMeasures(DrinkJsonProperty drinkJsonProperty) {
+
+        List<Object> measures = asList(drinkJsonProperty.getStrMeasure1(),
+                drinkJsonProperty.getStrMeasure2(),
+                drinkJsonProperty.getStrMeasure3(),
+                drinkJsonProperty.getStrMeasure4(),
+                drinkJsonProperty.getStrMeasure5(),
+                drinkJsonProperty.getStrMeasure6(),
+                drinkJsonProperty.getStrMeasure7(),
+                drinkJsonProperty.getStrMeasure8(),
+                drinkJsonProperty.getStrMeasure9(),
+                drinkJsonProperty.getStrMeasure10(),
+                drinkJsonProperty.getStrMeasure11(),
+                drinkJsonProperty.getStrMeasure12(),
+                drinkJsonProperty.getStrMeasure13(),
+                drinkJsonProperty.getStrMeasure14(),
+                drinkJsonProperty.getStrMeasure15());
+
+
+        List<Object> ingredients = asList(drinkJsonProperty.getStrIngredient1(),
+                drinkJsonProperty.getStrIngredient2(),
+                drinkJsonProperty.getStrIngredient3(),
+                drinkJsonProperty.getStrIngredient4(),
+                drinkJsonProperty.getStrIngredient5(),
+                drinkJsonProperty.getStrIngredient6(),
+                drinkJsonProperty.getStrIngredient7(),
+                drinkJsonProperty.getStrIngredient8(),
+                drinkJsonProperty.getStrIngredient9(),
+                drinkJsonProperty.getStrIngredient10(),
+                drinkJsonProperty.getStrIngredient11(),
+                drinkJsonProperty.getStrIngredient12(),
+                drinkJsonProperty.getStrIngredient13(),
+                drinkJsonProperty.getStrIngredient14(),
+                drinkJsonProperty.getStrIngredient15());
+
+
         StringBuilder ingredientsBuilder = new StringBuilder();
 
-        List<Object> measures = asList(drinkDto.getDrinks().get(0).getStrMeasure1(),
-                drinkDto.getDrinks().get(0).getStrMeasure2(),
-                drinkDto.getDrinks().get(0).getStrMeasure3(),
-                drinkDto.getDrinks().get(0).getStrMeasure4(),
-                drinkDto.getDrinks().get(0).getStrMeasure5(),
-                drinkDto.getDrinks().get(0).getStrMeasure6(),
-                drinkDto.getDrinks().get(0).getStrMeasure7(),
-                drinkDto.getDrinks().get(0).getStrMeasure8(),
-                drinkDto.getDrinks().get(0).getStrMeasure9(),
-                drinkDto.getDrinks().get(0).getStrMeasure10(),
-                drinkDto.getDrinks().get(0).getStrMeasure11(),
-                drinkDto.getDrinks().get(0).getStrMeasure12(),
-                drinkDto.getDrinks().get(0).getStrMeasure13(),
-                drinkDto.getDrinks().get(0).getStrMeasure14(),
-                drinkDto.getDrinks().get(0).getStrMeasure15());
-
-
-        List<Object> ingredients = asList(drinkDto.getDrinks().get(0).getStrIngredient1(),
-                drinkDto.getDrinks().get(0).getStrIngredient2(),
-                drinkDto.getDrinks().get(0).getStrIngredient3(),
-                drinkDto.getDrinks().get(0).getStrIngredient4(),
-                drinkDto.getDrinks().get(0).getStrIngredient5(),
-                drinkDto.getDrinks().get(0).getStrIngredient6(),
-                drinkDto.getDrinks().get(0).getStrIngredient7(),
-                drinkDto.getDrinks().get(0).getStrIngredient8(),
-                drinkDto.getDrinks().get(0).getStrIngredient9(),
-                drinkDto.getDrinks().get(0).getStrIngredient10(),
-                drinkDto.getDrinks().get(0).getStrIngredient11(),
-                drinkDto.getDrinks().get(0).getStrIngredient12(),
-                drinkDto.getDrinks().get(0).getStrIngredient13(),
-                drinkDto.getDrinks().get(0).getStrIngredient14(),
-                drinkDto.getDrinks().get(0).getStrIngredient15());
-
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < ingredients.size(); i++) {
             if (ingredients.get(i) != null && measures.get(i) != null) {
-                ingredientsBuilder.append(ingredients.get(i)).append(" (").append(measures.get(i)).append("), ");
+                ingredientsBuilder.append(ingredients.get(i)).append(" (").append(measures.get(i)).append(")");
+
+                if (i < ingredients.size() - 1) {
+                    ingredientsBuilder.append(", ");
+                }
             }
         }
         return ingredientsBuilder.toString();
     }
-
 }

@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
-import pl.coderslab.GetADrink.model.Drink;
+import pl.coderslab.GetADrink.model.DrinkJsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -21,7 +21,7 @@ import pl.coderslab.GetADrink.model.Drink;
 public class DrinkDto {
 
     @JsonProperty("drinks")
-    public List<Drink> drinks = null;
+    public List<DrinkJsonProperty> drinkJsonProperties = null;
 
     @JsonIgnore
     public static Map<String, Object> additionalProperties = new HashMap<String, Object>();

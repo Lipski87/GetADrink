@@ -22,5 +22,10 @@
 <button onclick="location.href='/drinks/random'" type="button">
     Get a random drink</button>
 
+<form action="/drinks/byName">
+    <label for="drinkName">Drink name: </label>
+    <input id="drinkName" type="text" name="drinkName"/>
+    <input type="submit" value="Search"/>
+</form>
 </body>
 </html>

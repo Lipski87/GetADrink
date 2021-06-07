@@ -23,8 +23,8 @@ public class DrinkService {
         return drinkClient.getRandomDrink();
     }
 
-    public List<DrinkJsonProperty> getDrinkByName() {
-        return drinkClient.getDrinkByName("margarita");
+    public List<DrinkJsonProperty> getDrinkByName(String drinkName) {
+        return drinkClient.getDrinkByName(drinkName);
     }
 
     public void addDrink(Drink drink) {

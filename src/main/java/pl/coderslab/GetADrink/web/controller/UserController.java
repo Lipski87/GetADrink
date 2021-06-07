@@ -1,27 +1,26 @@
 package pl.coderslab.GetADrink.web.controller;
 
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.GetADrink.model.User;
 import pl.coderslab.GetADrink.validation.UserValidator;
+import pl.coderslab.GetADrink.web.service.drink.DrinkService;
 import pl.coderslab.GetADrink.web.service.security.SecurityServiceImpl;
 import pl.coderslab.GetADrink.web.service.user.UserServiceImpl;
 
 @Controller
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserServiceImpl userServiceImpl;
     private final SecurityServiceImpl securityServiceImpl;
     private final UserValidator userValidator;
+    private final DrinkService drinkService;
 
-    public UserController(UserServiceImpl userServiceImpl, SecurityServiceImpl securityServiceImpl, UserValidator userValidator) {
-        this.userServiceImpl = userServiceImpl;
-        this.securityServiceImpl = securityServiceImpl;
-        this.userValidator = userValidator;
-    }
 
     @GetMapping("/registration")
     public String getRegistrationForm(Model model) {
@@ -40,7 +39,7 @@ public class UserController {
         userServiceImpl.addUser(user);
 
         securityServiceImpl.autoLogin(user.getUsername(), user.getPasswordConfirm());
-        return "/home";
+        return "redirect:/home";
     }
 
     @GetMapping("/login")
@@ -50,12 +49,11 @@ public class UserController {
 
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
-
         return "/login";
     }
 
-    @GetMapping({"/","/userProfile"})
-    public String welcome(Model model) {
+    @GetMapping("/")
+    public String welcome() {
         return "/home";
     }
 }

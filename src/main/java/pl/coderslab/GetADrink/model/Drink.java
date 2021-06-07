@@ -1,10 +1,17 @@
 package pl.coderslab.GetADrink.model;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "drinks")
 public class Drink {
@@ -13,8 +20,8 @@ public class Drink {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String instructions;
+    private String alcoholic;
     private String ingredientsAndMeasures;
+    private String instructions;
 
-    
 }

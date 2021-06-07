@@ -23,7 +23,6 @@ public class DrinkClient {
     }
 
 
-
     public List<DrinkJsonProperty> getRandomDrink() {
 
         DrinkDto drinkDto = callGetMethod("{apiKey}/random.php", DrinkDto.class, API_KEY);
@@ -34,7 +33,6 @@ public class DrinkClient {
 
     public List<DrinkJsonProperty> getDrinkByName(String drinkName) {
         DrinkDto drinkDto = callGetMethod("{apikey}/search.php?s={drinkName}", DrinkDto.class, API_KEY, drinkName);
-
         return getDrinks(drinkDto);
     }
 

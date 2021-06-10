@@ -21,8 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 public class DrinkController {
 
     private final DrinkService drinkService;
-    private final SecurityServiceImpl securityService;
-    private final UserServiceImpl userService;
 
     @GetMapping("/random")
     public String getRandomDrink(Model model){
@@ -33,17 +31,8 @@ public class DrinkController {
     @PostMapping("/random")
     public String addFavoriteDrink(@RequestParam String strDrink, String strAlcoholic,
                                    String strIngredientsAndMeasures, String strInstructions) {
-        Drink drink = new Drink();
-        drink.setName(strDrink);
-        drink.setAlcoholic(strAlcoholic);
-        drink.setIngredientsAndMeasures(strIngredientsAndMeasures);
-        drink.setInstructions(strInstructions);
 
-        String username = securityService.findLoggedInUsername();
-
-        User user = userService.findByUsername(username);
-
-        user.getDrinks().add(drink);
+        Drink drink = drinkService.getDrink(strDrink, strAlcoholic, strIngredientsAndMeasures, strInstructions);
 
         drinkService.addDrink(drink);
 

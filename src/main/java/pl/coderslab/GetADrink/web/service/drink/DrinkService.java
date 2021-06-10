@@ -5,7 +5,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.coderslab.GetADrink.model.Drink;
 import pl.coderslab.GetADrink.model.DrinkJsonProperty;
+import pl.coderslab.GetADrink.model.User;
 import pl.coderslab.GetADrink.web.repository.DrinkRepository;
+import pl.coderslab.GetADrink.web.service.security.SecurityServiceImpl;
+import pl.coderslab.GetADrink.web.service.user.UserServiceImpl;
 import pl.coderslab.GetADrink.webclient.DrinkClient;
 
 import java.util.List;
@@ -16,6 +19,8 @@ public class DrinkService {
 
     private final DrinkClient drinkClient;
     private final DrinkRepository drinkRepository;
+    private final SecurityServiceImpl securityServiceImpl;
+    private final UserServiceImpl userServiceImpl;
 
 
     public List<DrinkJsonProperty> getRandomDrink() {
@@ -28,6 +33,23 @@ public class DrinkService {
 
     public void addDrink(Drink drink) {
         drinkRepository.save(drink);
+    }
+
+    public Drink getDrink(String drinkName, String alcoholic, String ingredientsAndMeasures, String instructions) {
+
+        Drink drink = new Drink();
+        drink.setName(drinkName);
+        drink.setAlcoholic(alcoholic);
+        drink.setIngredientsAndMeasures(ingredientsAndMeasures);
+        drink.setInstructions(instructions);
+
+        String username = securityServiceImpl.findLoggedInUsername();
+
+        User user = userServiceImpl.findByUsername(username);
+
+        user.getDrinks().add(drink);
+
+        return drink;
     }
 
 

@@ -16,7 +16,7 @@
 <br>
 <br>
 <form:form method="post" modelAttribute="drink">
-    Drink name: <form:input path="strDrink"  readonly="true"/><br>
+    Drink name: <form:input path="strDrink" readonly="true"/><br>
     <br>
     Alcoholic?:<form:input path="strAlcoholic" readonly="true"/><br>
     <br>
@@ -24,7 +24,7 @@
     <br>
     Instructions:<form:input path="strInstructions" readonly="true"/><br>
     <br>
-    <input type="submit" value="Save as a favorite"/>
+    <input type="submit" value="Save as a favourite"/>
     <br>
 </form:form>
 <br>

@@ -22,10 +22,11 @@
         <br>
         Instructions: <input type="text" name="instructions" value="${drink.strInstructions}" readonly/><br>
         <br>
-        <input type="submit" value="Save as a favorite"/>
+        <input type="submit" value="Save as a favourite"/>
         <br>
     </form:form>
     ############
+    <br>
     <br>
 </c:forEach>
 <br>

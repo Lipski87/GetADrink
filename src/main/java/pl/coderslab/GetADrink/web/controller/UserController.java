@@ -13,7 +13,7 @@ import pl.coderslab.GetADrink.web.service.drink.DrinkService;
 import pl.coderslab.GetADrink.web.service.security.SecurityServiceImpl;
 import pl.coderslab.GetADrink.web.service.user.UserServiceImpl;
 
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -61,7 +61,12 @@ public class UserController {
 
         User user = userServiceImpl.findByUsername(username);
 
-        model.addAttribute("drinks", user.getDrinks());
+        List<Drink> fromSetToList = new ArrayList<>(user.getDrinks());
+
+        fromSetToList.sort(Comparator.comparing(Drink::getName));
+
+
+        model.addAttribute("drinks", fromSetToList);
 
         return "/home";
     }

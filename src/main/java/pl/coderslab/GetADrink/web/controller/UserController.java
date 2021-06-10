@@ -6,11 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.GetADrink.model.Drink;
 import pl.coderslab.GetADrink.model.User;
 import pl.coderslab.GetADrink.validation.UserValidator;
 import pl.coderslab.GetADrink.web.service.drink.DrinkService;
 import pl.coderslab.GetADrink.web.service.security.SecurityServiceImpl;
 import pl.coderslab.GetADrink.web.service.user.UserServiceImpl;
+
+import java.util.Set;
 
 @Controller
 @RequiredArgsConstructor
@@ -19,7 +22,6 @@ public class UserController {
     private final UserServiceImpl userServiceImpl;
     private final SecurityServiceImpl securityServiceImpl;
     private final UserValidator userValidator;
-    private final DrinkService drinkService;
 
 
     @GetMapping("/registration")
@@ -53,7 +55,14 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public String welcome() {
+    public String welcome(Model model) {
+
+        String username = securityServiceImpl.findLoggedInUsername();
+
+        User user = userServiceImpl.findByUsername(username);
+
+        model.addAttribute("drinks", user.getDrinks());
+
         return "/home";
     }
 }

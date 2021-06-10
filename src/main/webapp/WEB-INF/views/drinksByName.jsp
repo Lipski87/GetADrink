@@ -12,18 +12,19 @@
 <br>
 <br>
 <c:forEach items="${drinks}" var="drink">
-    <form action="/drinks/add">
-        Drink name: ${drink.strDrink}<br>
+    <form:form action="/drinks/byName" method="post" modelAttribute="drinks">
+        Drink name: <input type="text" name="name" value="${drink.strDrink}" readonly/><br>
         <br>
-        Alcoholic?: ${drink.strAlcoholic}<br>
+        Alcoholic?: <input type="text" name="alcoholic" value="${drink.strAlcoholic}" readonly/><br>
         <br>
-        Ingredients and measures: ${drink.strIngredientsAndMeasures}<br>
+        Ingredients and measures: <input type="text" name="ingredientsAndMeasures"
+                                         value="${drink.strIngredientsAndMeasures}" readonly/><br>
         <br>
-        Instructions: ${drink.strInstructions}<br>
+        Instructions: <input type="text" name="instructions" value="${drink.strInstructions}" readonly/><br>
         <br>
         <input type="submit" value="Save as a favorite"/>
         <br>
-    </form>
+    </form:form>
     ############
     <br>
 </c:forEach>

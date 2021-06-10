@@ -29,8 +29,8 @@ public class DrinkController {
     }
 
     @PostMapping("/random")
-    public String addFavoriteDrink(@RequestParam String strDrink, String strAlcoholic,
-                                   String strIngredientsAndMeasures, String strInstructions) {
+    public String addFavouriteRandomDrink(@RequestParam String strDrink, String strAlcoholic,
+                                          String strIngredientsAndMeasures, String strInstructions) {
 
         Drink drink = drinkService.getDrink(strDrink, strAlcoholic, strIngredientsAndMeasures, strInstructions);
 
@@ -44,5 +44,18 @@ public class DrinkController {
         model.addAttribute("drinks", drinkService.getDrinkByName(request.getParameter("drinkName")));
         return "/drinksByName";
     }
+
+    @PostMapping("/byName")
+    public String addFavouriteDrinkByName(@ModelAttribute("drink") Drink drink) {
+
+        Drink newDrink = drinkService.getDrink(drink.getName(),drink.getAlcoholic(),drink.getIngredientsAndMeasures()
+                ,drink.getInstructions());
+
+        drinkService.addDrink(newDrink);
+
+        return "/home";
+    }
+
+
 
 }

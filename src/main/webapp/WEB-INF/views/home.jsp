@@ -19,13 +19,13 @@
         <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
     </c:if>
 </div>
-<button onclick="location.href='/drinks/random'" type="button">
-    Get a random drink</button>
 
 <form action="/drinks/byName">
     <label for="drinkName">Drink name: </label>
     <input id="drinkName" type="text" name="drinkName"/>
     <input type="submit" value="Search"/>
 </form>
+<button onclick="location.href='/drinks/random'" type="button">
+    Get a random drink</button>
 </body>
 </html>

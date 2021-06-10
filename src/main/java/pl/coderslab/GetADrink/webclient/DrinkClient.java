@@ -36,6 +36,11 @@ public class DrinkClient {
         return getDrinks(drinkDto);
     }
 
+    public List<DrinkJsonProperty> getDrinkByIngredient(String ingredient) {
+        DrinkDto drinkDto = callGetMethod("{apikey}/filter.php?i={ingredient}", DrinkDto.class, API_KEY, ingredient);
+        return getDrinks(drinkDto);
+    }
+
     private List<DrinkJsonProperty> getDrinks(DrinkDto drinkDto) {
 
         List<DrinkJsonProperty> drinkJsonProperties = new ArrayList<>();

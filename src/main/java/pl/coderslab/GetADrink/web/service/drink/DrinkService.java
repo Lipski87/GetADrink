@@ -31,6 +31,10 @@ public class DrinkService {
         return drinkClient.getDrinkByName(drinkName);
     }
 
+    public List<DrinkJsonProperty> getDrinkByIngredient(String ingredient) {
+        return drinkClient.getDrinkByIngredient(ingredient);
+    }
+
     public void addDrink(Drink drink) {
         drinkRepository.save(drink);
     }

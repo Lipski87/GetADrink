@@ -56,6 +56,12 @@ public class DrinkController {
         return "/home";
     }
 
+    @GetMapping("/byIngredient")
+    public String getDrinkByIngredient(HttpServletRequest request, Model model) {
+        model.addAttribute("drinks", drinkService.getDrinkByIngredient(request.getParameter("ingredient")));
+        return "/drinksByIngredient";
+    }
+
 
 
 }

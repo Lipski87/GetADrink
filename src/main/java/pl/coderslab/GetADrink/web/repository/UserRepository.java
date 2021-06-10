@@ -6,5 +6,5 @@ import pl.coderslab.GetADrink.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    User findUserByUsername(String username);
+    User findByUsername(String username);
 }

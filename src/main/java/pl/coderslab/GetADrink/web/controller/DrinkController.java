@@ -2,6 +2,7 @@ package pl.coderslab.GetADrink.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +31,8 @@ public class DrinkController {
     }
 
     @PostMapping("/random")
-    public String addFavoriteDrink(@RequestParam String strDrink, String strAlcoholic, String strIngredientsAndMeasures, String strInstructions) {
+    public String addFavoriteDrink(@RequestParam String strDrink, String strAlcoholic,
+                                   String strIngredientsAndMeasures, String strInstructions) {
         Drink drink = new Drink();
         drink.setName(strDrink);
         drink.setAlcoholic(strAlcoholic);

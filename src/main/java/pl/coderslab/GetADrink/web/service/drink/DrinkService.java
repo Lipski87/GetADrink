@@ -18,7 +18,6 @@ public class DrinkService {
     private final DrinkRepository drinkRepository;
 
 
-
     public List<DrinkJsonProperty> getRandomDrink() {
         return drinkClient.getRandomDrink();
     }

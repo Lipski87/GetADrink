@@ -29,7 +29,13 @@
     <form action="/drinks/byName">
         <label for="drinkName">Drink name: </label>
         <input id="drinkName" type="text" name="drinkName"/>
-        <input type="submit" value="Search drink by name"/>
+        <input type="submit" value="Search a drink by a name"/>
+    </form>
+    <br>
+    <form action="/drinks/byIngredient">
+        <label for="ingredient">Ingredient: </label>
+        <input id="ingredient" type="text" name="ingredient"/>
+        <input type="submit" value="Search a drink by an ingredient"/>
     </form>
     <br>
     <form action="/alcohol/details">

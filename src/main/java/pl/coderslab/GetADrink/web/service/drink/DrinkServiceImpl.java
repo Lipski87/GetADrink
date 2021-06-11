@@ -23,7 +23,7 @@ public class DrinkServiceImpl implements DrinkService{
     private final UserServiceImpl userServiceImpl;
 
 
-    public List<DrinkJsonProperty> getRandomDrink() {
+    public DrinkJsonProperty getRandomDrink() {
         return drinkClient.getRandomDrink();
     }
 

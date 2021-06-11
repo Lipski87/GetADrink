@@ -18,7 +18,7 @@ public class DrinkController {
 
     @GetMapping("/random")
     public String getRandomDrink(Model model) {
-        model.addAttribute("drink", drinkServiceImpl.getRandomDrink().get(0));
+        model.addAttribute("drink", drinkServiceImpl.getRandomDrink());
         return "/randomDrink";
     }
 
@@ -26,11 +26,20 @@ public class DrinkController {
     public String addFavouriteRandomDrink(@RequestParam String strDrink, String strAlcoholic,
                                           String strIngredientsAndMeasures, String strInstructions) {
 
-        Drink drink = drinkServiceImpl.addNewDrink(strDrink, strAlcoholic, strIngredientsAndMeasures, strInstructions);
+        Drink drink = drinkServiceImpl.findByDrinkName(strDrink);
 
-        drinkServiceImpl.addDrink(drink);
+        if (drink != null) {
 
-        return "/home";
+            drinkServiceImpl.addDrinkToCurrentUser(drink);
+
+        } else {
+
+            Drink newDrink = drinkServiceImpl.addNewDrink(strDrink, strAlcoholic, strIngredientsAndMeasures, strInstructions);
+
+            drinkServiceImpl.addDrink(newDrink);
+        }
+
+        return "redirect:/";
     }
 
     @GetMapping("/byName")
@@ -43,14 +52,16 @@ public class DrinkController {
     public String addFavouriteDrinkByName(@ModelAttribute("drink") Drink drink) {
 
 
-        if (drinkServiceImpl.findByDrinkName(drink.getName()) == null) {
+        if (drinkServiceImpl.findByDrinkName(drink.getName()) != null) {
+
+            drinkServiceImpl.addDrinkToCurrentUser(drinkServiceImpl.findByDrinkName(drink.getName()));
+
+        } else {
 
             Drink newDrink = drinkServiceImpl.addNewDrink(drink.getName(), drink.getAlcoholic(),
                     drink.getIngredientsAndMeasures(),
                     drink.getInstructions());
             drinkServiceImpl.addDrink(newDrink);
-        } else {
-            drinkServiceImpl.addDrinkToCurrentUser(drinkServiceImpl.findByDrinkName(drink.getName()));
         }
 
         return "redirect:/";

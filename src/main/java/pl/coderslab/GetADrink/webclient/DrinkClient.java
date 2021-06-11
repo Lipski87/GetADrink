@@ -18,11 +18,11 @@ public class DrinkClient {
     private final WebClient webClient;
 
 
-    public List<DrinkJsonProperty> getRandomDrink() {
+    public DrinkJsonProperty getRandomDrink() {
 
         DrinkDto drinkDto = webClient.callGetMethod("{apiKey}/random.php", DrinkDto.class, webClient.getAPI_KEY());
 
-        return getDrinks(drinkDto);
+        return getDrinks(drinkDto).get(0);
 
     }
 

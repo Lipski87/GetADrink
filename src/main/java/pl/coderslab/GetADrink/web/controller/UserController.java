@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.GetADrink.model.Drink;
 import pl.coderslab.GetADrink.model.User;
 import pl.coderslab.GetADrink.validation.UserValidator;
-import pl.coderslab.GetADrink.web.service.drink.DrinkService;
 import pl.coderslab.GetADrink.web.service.security.SecurityServiceImpl;
 import pl.coderslab.GetADrink.web.service.user.UserServiceImpl;
 

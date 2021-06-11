@@ -14,7 +14,7 @@
 <c:forEach items="${drinks}" var="drink">
     <form action="/drinks/byName">
         Drink name: <input id="drinkName" name="drinkName" value="${drink.strDrink}" readonly/>
-        <input type="submit" value="Search"/>
+        <input type="submit" value="Get more details"/>
     </form>
     ############
     <br>

@@ -29,13 +29,13 @@
     <form action="/drinks/byName">
         <label for="drinkName">Drink name: </label>
         <input id="drinkName" type="text" name="drinkName"/>
-        <input type="submit" value="Search"/>
+        <input type="submit" value="Search drink by name"/>
     </form>
     <br>
-    <form action="/drinks/byIngredient">
-        <label for="ingredient">Ingredient: </label>
-        <input id="ingredient" type="text" name="ingredient"/>
-        <input type="submit" value="Search"/>
+    <form action="/alcohol/details">
+        <label for="alcohol">Alcohol: </label>
+        <input id="alcohol" type="text" name="alcohol"/>
+        <input type="submit" value="Get more details"/>
     </form>
     <br>
     <button onclick="location.href='/drinks/random'" type="button">
@@ -46,7 +46,7 @@
 
     <c:forEach items="${drinks}" var="drink">
 
-        Drink name: ${drink.name}"<br>
+        Drink name: ${drink.name}<br>
         <br>
         Alcoholic?: ${drink.alcoholic}<br>
         <br>

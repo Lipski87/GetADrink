@@ -33,5 +33,7 @@
 <br>
 <button onclick="location.href='/'" type="button">
     Home</button>
+<button onclick="history.back()" type="button">
+    Back</button>
 </body>
 </html>

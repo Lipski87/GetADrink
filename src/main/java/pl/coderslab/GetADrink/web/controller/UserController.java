@@ -40,7 +40,7 @@ public class UserController {
         userServiceImpl.addUser(user);
 
         securityServiceImpl.autoLogin(user.getUsername(), user.getPasswordConfirm());
-        return "redirect:/home";
+        return "redirect:/";
     }
 
     @GetMapping("/login")
